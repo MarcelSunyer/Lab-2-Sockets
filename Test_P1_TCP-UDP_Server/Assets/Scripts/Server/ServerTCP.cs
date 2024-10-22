@@ -117,8 +117,8 @@ public class ServerTCP : MonoBehaviour
         {
             User newUser = new User();
             newUser.name = "";
-            newUser.socket = serverSocket.Accept(); // Aceptar la conexión del socket
-            connectedUsers.Add(newUser); // Añadir el nuevo usuario a la lista de usuarios conectados
+            newUser.socket = serverSocket.Accept(); 
+            connectedUsers.Add(newUser);
 
             IPEndPoint clientEndPoint = (IPEndPoint)newUser.socket.RemoteEndPoint;
             serverText += $"\nConnected with {clientEndPoint.Address} at port {clientEndPoint.Port}";
@@ -152,14 +152,11 @@ public class ServerTCP : MonoBehaviour
             catch (System.Exception ex)
             {
                 Debug.Log($"Exception: {ex.Message}");
-                break; // Salir del bucle si hay un error
+                break;
             }
         }
 
-        // Cuando termina la conexión, cerramos el socket y eliminamos al usuario
-        user.socket.Close();
-        connectedUsers.Remove(user);
-        serverText += "\nUser disconnected";
+       
     }
 }
 
