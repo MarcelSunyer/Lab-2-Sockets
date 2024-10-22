@@ -4,7 +4,7 @@ using System.Net;
 using UnityEngine;
 using TMPro;
 
-public class DisplayLocalIP : MonoBehaviour
+public class Local_Ip_join_server: MonoBehaviour
 {
     public TextMeshProUGUI ipText; 
 
@@ -14,7 +14,7 @@ public class DisplayLocalIP : MonoBehaviour
         string localIP = GetLocalIPAddress();
         ipText.text = "Local IP Address: " + localIP; 
 
-        PlayerPrefs.SetString("LocalIPAddress", localIP);
+        PlayerPrefs.SetString("LocalIPAddress_join_server", localIP);
         PlayerPrefs.Save(); 
     }
 

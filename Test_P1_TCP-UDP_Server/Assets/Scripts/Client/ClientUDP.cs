@@ -30,7 +30,7 @@ public class ClientUDP : MonoBehaviour
 
     void Send()
     {
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("192.168.0.46"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(PlayerPrefs.GetString("Join_Server_IP")), 9050);
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
         byte[] data = new byte[1024];

@@ -9144,9 +9144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed2e5429f17c6c45abb2e5a0f0cbdb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayText1: {fileID: 638751647}
-  displayText2: {fileID: 1807319846}
-  displayText3: {fileID: 1981795299}
+  Cs_Name: {fileID: 638751647}
+  Cs_Server: {fileID: 1807319846}
+  Cs_Ip: {fileID: 1981795299}
 --- !u!4 &1132037603
 Transform:
   m_ObjectHideFlags: 0
