@@ -156,7 +156,9 @@ public class ServerTCP : MonoBehaviour
             }
         }
 
-       
+        user.socket.Close();
+        connectedUsers.Remove(user);
+        serverText += "\nUser disconnected";
     }
 }
 
