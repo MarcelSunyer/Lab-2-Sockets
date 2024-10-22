@@ -32,7 +32,7 @@ public class ClientTCP : MonoBehaviour
 
     void Connect()
     {
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9050);
+        IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("192.168.0.46"), 9050);
         server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         server.Connect(ipep);
 
