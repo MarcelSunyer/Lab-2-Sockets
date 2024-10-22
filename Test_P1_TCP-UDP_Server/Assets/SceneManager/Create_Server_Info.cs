@@ -13,9 +13,9 @@ public class Create_Server_Info : MonoBehaviour
     public void SaveInputTexts()
     {
 
-        PlayerPrefs.SetString("SavedInput1", Cs_Name.text);
+        PlayerPrefs.SetString("Name_Player", Cs_Name.text);
 
-        PlayerPrefs.SetString("SavedInput2", Cs_Server.text);
+        PlayerPrefs.SetString("Server_Name", Cs_Server.text);
 
         PlayerPrefs.Save();
     }

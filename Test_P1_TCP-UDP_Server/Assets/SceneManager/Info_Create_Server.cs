@@ -12,18 +12,18 @@ public class Info_Creat_Server : MonoBehaviour
     private void Start()
     {
         // Verifica y asigna el texto
-        if (PlayerPrefs.HasKey("SavedInput1"))
+        if (PlayerPrefs.HasKey("Name_Player"))
         {
-            Cs_Name.text = PlayerPrefs.GetString("SavedInput1");
+            Cs_Name.text = PlayerPrefs.GetString("Name_Player");
         }
         else
         {
             Cs_Name.text = "No hay texto guardado";
         }
 
-        if (PlayerPrefs.HasKey("SavedInput2"))
+        if (PlayerPrefs.HasKey("Server_Name"))
         {
-            Cs_Server.text = PlayerPrefs.GetString("SavedInput2");
+            Cs_Server.text = PlayerPrefs.GetString("Server_Name");
         }
         else
         {
