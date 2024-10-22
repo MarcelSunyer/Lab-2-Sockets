@@ -7,6 +7,7 @@ public class TextScenes : MonoBehaviour
 {
     [SerializeField] private TMP_Text displayText1;
     [SerializeField] private TMP_Text displayText2;
+    [SerializeField] private TMP_Text displayText3;
 
     private void Start()
     {
@@ -23,6 +24,14 @@ public class TextScenes : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedInput2"))
         {
             displayText2.text = PlayerPrefs.GetString("SavedInput2");
+        }
+        else
+        {
+            displayText2.text = "No hay texto guardado";
+        }
+        if (PlayerPrefs.HasKey("LocalIPAddress"))
+        {
+            displayText3.text = PlayerPrefs.GetString("LocalIPAddress");
         }
         else
         {

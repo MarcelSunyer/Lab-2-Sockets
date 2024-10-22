@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
-using TMPro; // Asegúrate de incluir esto si usas TextMeshPro
+using TMPro;
 
 public class DisplayLocalIP : MonoBehaviour
 {
-    public TextMeshProUGUI ipText; // Si usas TextMeshPro
-    // public UnityEngine.UI.Text ipText; // Si usas UI Text
+    public TextMeshProUGUI ipText; 
+
 
     void Start()
     {
         string localIP = GetLocalIPAddress();
-        ipText.text = "Local IP Address: " + localIP; // Actualiza el texto
+        ipText.text = "Local IP Address: " + localIP; 
+
+        PlayerPrefs.SetString("LocalIPAddress", localIP);
+        PlayerPrefs.Save(); 
     }
 
     string GetLocalIPAddress()
