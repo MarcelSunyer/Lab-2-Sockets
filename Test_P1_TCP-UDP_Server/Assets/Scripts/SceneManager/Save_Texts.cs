@@ -16,8 +16,8 @@ public class Save_Texts : MonoBehaviour
         PlayerPrefs.SetString("SavedInput1", inputField1.text);
         PlayerPrefs.SetString("SavedInput2", inputField2.text);
         PlayerPrefs.Save();
-        Debug.Log(inputField1.text);
-        Debug.Log(inputField2.text);
+        UnityEngine.Debug.Log(inputField1.text);
+        UnityEngine.Debug.Log(inputField2.text);
     }
 
 }
