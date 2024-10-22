@@ -514,10 +514,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2287372735491187858, guid: 829279b4a8f4def4fb4359e48a7f643d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 489616595}
+      addedObject: {fileID: 1756492367}
     - targetCorrespondingSourceObject: {fileID: 2287372735491187858, guid: 829279b4a8f4def4fb4359e48a7f643d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1756492367}
+      addedObject: {fileID: 489616595}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829279b4a8f4def4fb4359e48a7f643d, type: 3}
 --- !u!224 &243277493 stripped
@@ -1229,10 +1229,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1418819868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf535e62b7465474e831656a83658b4d, type: 3}
+  m_Script: {fileID: 11500000, guid: bb81464ee1553b343b785712732c41ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createClient: Exercise1_Client
+  createClient: LoadServer
   joinServer: JoinServer
   sceneClient: Exercise1_Client
   sceneServer: Exercise1_Server
@@ -1518,11 +1518,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2078268407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb5d02ea786fe54dbce3ef653fab649, type: 3}
+  m_Script: {fileID: 11500000, guid: e1e6558889e8ec5418b12e2b53b4ecec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField1: {fileID: 489616596}
-  inputField2: {fileID: 1756492368}
+  inputField1: {fileID: 1756492368}
+  inputField2: {fileID: 489616596}
 --- !u!4 &2078268409
 Transform:
   m_ObjectHideFlags: 0

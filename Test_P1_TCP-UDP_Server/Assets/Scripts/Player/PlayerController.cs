@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     Animator animator;
 
     private bool newarCPU = false;
-    private bool nearTCP1CPU = false;
-    private bool nearTCP2CPU = false;
 
     // Start is called before the first frame update
     void Start()
