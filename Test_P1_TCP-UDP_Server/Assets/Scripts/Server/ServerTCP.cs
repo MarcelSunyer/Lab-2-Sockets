@@ -72,11 +72,19 @@ public class ServerTCP : MonoBehaviour
         // Enviar el mensaje a todos los clientes conectados
         foreach (User user in connectedUsers)
         {
-            if (user.socket.Connected) // Asegurarse de que el socket del usuario esté conectado
+            if (user.socket != null && user.socket.Connected) // Verificar que el socket del usuario esté conectado
             {
-                byte[] data = Encoding.ASCII.GetBytes(text);
-                user.socket.Send(data); // Enviar el mensaje a cada clienteç
-
+                try
+                {
+                    byte[] data = Encoding.ASCII.GetBytes(text);
+                    user.socket.Send(data); // Enviar el mensaje a cada cliente
+                }
+                catch (SocketException ex)
+                {
+                    Debug.Log($"Error al enviar mensaje al cliente: {ex.Message}");
+                    // Si hay un error al enviar, no desconectamos automáticamente
+                    // El cliente puede manejar la reconexión si es necesario.
+                }
             }
         }
         serverText += $"\nSent: {text}";
@@ -101,7 +109,6 @@ public class ServerTCP : MonoBehaviour
 
     public void startServer()
     {
-
         SendMessageToServer("Starting TDP Server...");
 
         serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -119,7 +126,7 @@ public class ServerTCP : MonoBehaviour
         {
             User newUser = new User();
             newUser.name = "";
-            newUser.socket = serverSocket.Accept(); 
+            newUser.socket = serverSocket.Accept();
             connectedUsers.Add(newUser);
 
             IPEndPoint clientEndPoint = (IPEndPoint)newUser.socket.RemoteEndPoint;
@@ -135,31 +142,38 @@ public class ServerTCP : MonoBehaviour
         byte[] data = new byte[1024];
         int recv = 0;
 
-        while (true)
+        while (user.socket != null && user.socket.Connected)
         {
             try
             {
                 recv = user.socket.Receive(data);
                 if (recv == 0)
+                {
+                    // Desconectar si no hay datos recibidos
                     break;
+                }
                 else
                 {
                     string receivedMessage = Encoding.ASCII.GetString(data, 0, recv);
-                    serverText += $"\nReceived: {receivedMessage}";
+                    serverText += $"\n{receivedMessage}";
 
                     // Mostrar mensaje recibido en el chat local
                     SendMessageToChat(receivedMessage);
                 }
             }
-            catch (System.Exception ex)
+            catch (SocketException ex)
             {
-                Debug.Log($"Exception: {ex.Message}");
-                break;
+                Debug.Log($"Error al recibir mensaje del cliente: {ex.Message}");
+                // Mantener la conexión abierta si hay un error menor
             }
         }
 
-        user.socket.Close();
-        connectedUsers.Remove(user);
+        // Desconectar al usuario si el socket no está conectado
+        if (user.socket != null)
+        {
+            user.socket.Close();
+            connectedUsers.Remove(user);
+        }
         serverText += "\nUser disconnected";
     }
 

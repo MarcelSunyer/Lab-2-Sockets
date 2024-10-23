@@ -15,8 +15,6 @@ public class ClientTCP : MonoBehaviour
     void Start()
     {
         UItext = UItextObj.GetComponent<TextMeshProUGUI>();
-        //clientText = "Connecting...";
-        //UItext.text = clientText;
     }
 
     void Update()
@@ -56,11 +54,24 @@ public class ClientTCP : MonoBehaviour
     {
         byte[] data = new byte[1024];
 
-        int recv = server.Receive(data);
-        if (recv > 0)
+        while (server != null && server.Connected)
         {
-            string receivedMessage = Encoding.ASCII.GetString(data, 0, recv);
-            clientText += "\nReceived: " + receivedMessage;
-        } 
+            try
+            {
+                int recv = server.Receive(data);
+                if (recv > 0)
+                {
+                    string receivedMessage = Encoding.ASCII.GetString(data, 0, recv);
+                    clientText += "\n" + receivedMessage;
+                }
+            }
+            catch (SocketException ex)
+            {
+                Debug.Log($"Error receiving data: {ex.Message}");
+                break; // Salir del bucle si hay un error grave
+            }
+        }
+
+        server.Close(); // Cerrar la conexión cuando el bucle termine
     }
 }
