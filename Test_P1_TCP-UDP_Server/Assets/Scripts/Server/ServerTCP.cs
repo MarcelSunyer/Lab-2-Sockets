@@ -46,7 +46,7 @@ public class ServerTCP : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 // Enviar el mensaje a todos los clientes
-                SendMessageToServer(chatBox.text);
+                SendMessageToServer(PlayerPrefs.GetString("Name_Player") + ": " + chatBox.text);
                 chatBox.text = ""; // Limpiar el InputField después de enviar el mensaje
             }
         }
@@ -75,7 +75,8 @@ public class ServerTCP : MonoBehaviour
             if (user.socket.Connected) // Asegurarse de que el socket del usuario esté conectado
             {
                 byte[] data = Encoding.ASCII.GetBytes(text);
-                user.socket.Send(data); // Enviar el mensaje a cada cliente
+                user.socket.Send(data); // Enviar el mensaje a cada clienteç
+
             }
         }
         serverText += $"\nSent: {text}";
@@ -100,7 +101,8 @@ public class ServerTCP : MonoBehaviour
 
     public void startServer()
     {
-        serverText = "Starting TDP Server...";
+
+        SendMessageToServer("Starting TDP Server...");
 
         serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, 9050);
@@ -166,7 +168,7 @@ public class ServerTCP : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(chatBox.text))
         {
-            SendMessageToServer(chatBox.text);
+            SendMessageToServer(PlayerPrefs.GetString("Name_Player") + ": " + chatBox.text);
             chatBox.text = ""; // Limpiar el InputField después de enviar el mensaje
         }
     }
