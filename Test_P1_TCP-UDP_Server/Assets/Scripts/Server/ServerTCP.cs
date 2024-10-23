@@ -14,7 +14,7 @@ public class ServerTCP : MonoBehaviour
     public GameObject chatPanel;
     public GameObject textObject;
 
-    public InputField chatBox; // Campo de entrada para el mensaje
+    public InputField chatBox; // Campo de entrada para el mensaje usando TMP_InputField
 
     [SerializeField]
     List<Message> messageList = new List<Message>();
@@ -159,6 +159,16 @@ public class ServerTCP : MonoBehaviour
         user.socket.Close();
         connectedUsers.Remove(user);
         serverText += "\nUser disconnected";
+    }
+
+    // Método llamado al hacer clic en el botón de enviar
+    public void OnSendButtonClicked()
+    {
+        if (!string.IsNullOrEmpty(chatBox.text))
+        {
+            SendMessageToServer(chatBox.text);
+            chatBox.text = ""; // Limpiar el InputField después de enviar el mensaje
+        }
     }
 }
 
